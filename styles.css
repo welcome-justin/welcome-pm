@@ -71,3 +71,61 @@ details > summary{list-style:none;}
 details > summary::-webkit-details-marker{display:none;}
 .faq-plus{transition:transform .2s ease;}
 details[open] .faq-plus{transform:rotate(45deg);}
+
+/* =========================================================================
+   Responsive / mobile layout
+   The page markup uses inline styles, so these rules target the inline
+   "signatures" via attribute selectors + !important to override them.
+   One file covers all pages (they share these patterns).
+   ========================================================================= */
+@media (max-width:768px){
+  /* tighten vertical section rhythm */
+  html{ --sec-pad:64px !important; }
+
+  /* slimmer side gutters on every centered container */
+  [style*="max-width:1240px"]{ padding-left:20px !important; padding-right:20px !important; }
+
+  /* collapse multi-column grids -> single column */
+  [style*="grid-template-columns:repeat(2,1fr)"],
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns:.85fr 1.15fr"],
+  [style*="grid-template-columns:1fr 1fr"]{ grid-template-columns:1fr !important; }
+
+  /* stats band -> 2-up, drop the vertical dividers */
+  [style*="grid-template-columns:repeat(4,1fr)"]{ grid-template-columns:1fr 1fr !important; }
+  [style*="border-left:1px solid var(--line)"]{ border-left:0 !important; }
+
+  /* footer -> 2-up */
+  [style*="grid-template-columns:1.5fr 1fr 1fr 1fr"]{ grid-template-columns:1fr 1fr !important; }
+
+  /* two-column hero / overview rows -> stack with full-width children */
+  [style*="display:flex;gap:64px"]{ flex-wrap:wrap !important; gap:36px !important; align-items:flex-start !important; }
+  [style*="flex:1.05 1 0"],
+  [style*="flex:.95 1 0"],
+  [style*="flex:1 1 360px"],
+  [style*="flex:1 1 430px"]{ flex-basis:100% !important; width:100% !important; min-width:0 !important; }
+
+  /* trim the homepage hero's tall padding */
+  [style*="padding:96px 40px 104px"]{ padding-top:60px !important; padding-bottom:64px !important; }
+
+  /* roomier card padding on the proposal form */
+  [style*="padding:36px"]{ padding:22px !important; }
+
+  /* hide the long top nav on phones (logo + CTA stay; full nav lives in the footer) */
+  nav[style*="gap:26px"]{ display:none !important; }
+}
+
+/* =========================================================================
+   Logo mark variants — switchable from the Customize panel (data-logo on <html>).
+   Targets the header mark in the upper-left. "square" = original look (no rule).
+   Marks stay theme-aware: they recolor with the active brand color.
+   ========================================================================= */
+html[data-logo="rounded"] [style*="width:42px;height:42px;border-radius:var(--radius);background:var(--navy)"]{
+  border-radius:13px !important;
+}
+html[data-logo="circle"] [style*="width:42px;height:42px;border-radius:var(--radius);background:var(--navy)"]{
+  background:transparent !important;
+  border:2px solid var(--navy) !important;
+  color:var(--navy) !important;
+  border-radius:50% !important;
+}

@@ -4,7 +4,7 @@
 (function () {
   var root = document.documentElement;
   var KEY = 'wpm-tweaks';
-  var defaults = { color: 'green', style: 'heritage', accent: 'gold', compact: false };
+  var defaults = { color: 'green', style: 'heritage', accent: 'gold', compact: false, logo: 'square' };
   var state = Object.assign({}, defaults);
   try { state = Object.assign(state, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
 
@@ -13,6 +13,7 @@
     root.setAttribute('data-style', state.style);
     root.setAttribute('data-accent', state.accent);
     root.setAttribute('data-compact', String(!!state.compact));
+    root.setAttribute('data-logo', state.logo);
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
     sync();
   }
@@ -35,6 +36,25 @@
     if (e.target.closest('#tw-close')) { document.getElementById('tw-panel').hidden = true; return; }
     if (e.target.closest('#tw-reset')) { state = Object.assign({}, defaults); apply(); return; }
   });
+
+  // Inject the Logo control into the Customize panel so every page gets it from this one file.
+  (function injectLogo() {
+    var panel = document.getElementById('tw-panel');
+    if (!panel || panel.querySelector('[data-axis="logo"]')) return;
+    var group = document.createElement('div');
+    group.className = 'tw-group';
+    group.innerHTML =
+      '<label>Logo</label>' +
+      '<div class="tw-seg" data-axis="logo">' +
+        '<button data-val="square">Square</button>' +
+        '<button data-val="rounded">Rounded</button>' +
+        '<button data-val="circle">Circle</button>' +
+      '</div>';
+    var compactTog = panel.querySelector('.tw-toggle[data-axis="compact"]');
+    var compactGroup = compactTog ? compactTog.closest('.tw-group') : null;
+    if (compactGroup) panel.insertBefore(group, compactGroup);
+    else panel.appendChild(group);
+  })();
 
   apply();
 })();
