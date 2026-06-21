@@ -56,6 +56,29 @@
     else panel.appendChild(group);
   })();
 
+  // Inject a hamburger button that toggles the mobile nav (works on every page from this file).
+  (function injectBurger() {
+    var header = document.querySelector('header');
+    if (!header) return;
+    var inner = header.firstElementChild;
+    var nav = header.querySelector('nav');
+    if (!inner || !nav || header.querySelector('.wpm-burger')) return;
+    var burger = document.createElement('button');
+    burger.className = 'wpm-burger';
+    burger.type = 'button';
+    burger.setAttribute('aria-label', 'Toggle menu');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.innerHTML = '<span></span><span></span><span></span>';
+    inner.appendChild(burger);
+    function setNav(open) {
+      root.setAttribute('data-nav', open ? 'open' : 'closed');
+      burger.setAttribute('aria-expanded', String(open));
+    }
+    burger.addEventListener('click', function () { setNav(root.getAttribute('data-nav') !== 'open'); });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) setNav(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
+  })();
+
   apply();
 })();
 
