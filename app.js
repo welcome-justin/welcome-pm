@@ -95,3 +95,55 @@
   }
   if (document.readyState !== 'loading') bind(); else document.addEventListener('DOMContentLoaded', bind);
 })();
+
+/* Request-a-Proposal form: progressive enhancement.
+   With JS blocked, the form still POSTs to Web3Forms and shows their hosted
+   success page. With JS we submit via fetch and show an inline message so the
+   visitor never leaves the page. Submissions email to the address tied to the
+   Web3Forms access_key (set in index.html). */
+(function () {
+  function init() {
+    var form = document.getElementById('proposal-form');
+    if (!form) return;
+    var status = document.getElementById('proposal-status');
+    var btn = form.querySelector('button[type="submit"]');
+    var btnHTML = btn ? btn.innerHTML : '';
+
+    function show(ok, msg) {
+      if (!status) return;
+      status.hidden = false;
+      status.textContent = msg;
+      status.style.background = ok ? 'rgba(31,122,60,.12)' : 'rgba(176,42,42,.10)';
+      status.style.color = ok ? '#1b5e20' : '#9b1c1c';
+    }
+    function reset() {
+      if (btn) { btn.disabled = false; btn.innerHTML = btnHTML; }
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      if (status) status.hidden = true;
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data && data.success) {
+            form.reset();
+            show(true, 'Thanks — your request has been sent. We’ll be in touch within one business day.');
+          } else {
+            show(false, (data && data.message) || 'Something went wrong. Please call us or email larry@welcomepropertymanagement.com.');
+          }
+          reset();
+        })
+        .catch(function () {
+          show(false, 'Network error — please call us or email larry@welcomepropertymanagement.com.');
+          reset();
+        });
+    });
+  }
+  if (document.readyState !== 'loading') init(); else document.addEventListener('DOMContentLoaded', init);
+})();
