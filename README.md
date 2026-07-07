@@ -111,7 +111,7 @@ and the `<script src="app.js">` tag — the page keeps whatever defaults are on 
 
 These are **placeholders** to replace with real content/functionality:
 
-- **Contact details:** the real phone `(310) 497-2660` is live across the utility bar,
+- **Contact details:** the real phone `(424) 371-2761` is live across the utility bar,
   contact section, footer, and service-page CTAs. (The DRE number was previously removed.)
 - **Imagery:** the hero, leadership headshot, and resource cards use CSS-gradient placeholders.
   Replace with real Southern California property photos and Larry Cole's headshot

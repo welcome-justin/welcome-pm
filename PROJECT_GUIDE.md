@@ -34,6 +34,17 @@ Pages: `index.html` + four service pages (`hoa-management.html`,
   `styles.css` (the mark recolors with the brand color).
 - **DRE number removed** from the utility bar + footer on all pages (the
   "California DRE Licensed Broker" credit line was left in).
+- **Buildium portal links wired** (2026-06-30): added **Resident Login** and
+  **Owner Login** links to the top **utility bar** (right side, after the "Serving
+  Southern California" tagline) on all 5 pages. Open in a new tab. Buildium account
+  is fully provisioned; site subdomain is `larry3rqzj.managebuilding.com`. URLs:
+  Resident Center → `https://larry3rqzj.managebuilding.com/Resident/portal/login`;
+  Owner/vendor → `https://larry3rqzj.managebuilding.com/Manager`; manager admin (Larry)
+  → `https://larry3rqzj.managebuilding.com/manager/`. No public listings/online-
+  application page exists yet (`/listings` 404s) — needs listings posted in Buildium
+  before an "Apply Now" link can point anywhere real. Placement is provisional —
+  Justin may rework it (e.g. in Claude Design); the block is self-contained and easy
+  to relocate.
 - **Request a Proposal form wired** (index.html `#contact`) to **Web3Forms**
   (`api.web3forms.com`; account under larry@welcomepropertymanagement.com, so
   submissions email Larry). Real `<form>` with field `name`s + hidden `access_key`;
@@ -79,7 +90,8 @@ files wholesale.
   GitHub issues the cert, tick **Enforce HTTPS** in repo Settings → Pages and confirm
   the apex + www both load.
 - ~~Replace placeholder phone with Larry's number~~ — DONE 2026-06-23: swapped to
-  **(310) 497-2660** (`tel:+13104972660`) across all 5 pages (utility bar, contact
+  Larry's number; updated again 2026-07-07 to **(424) 371-2761**
+  (`tel:+14243712761`) across all 5 pages (utility bar, contact
   section, footer, service-page CTAs). The contact form's input placeholder
   `(949) 555-0000` was intentionally left as a generic example.
 - Replace CSS-gradient image placeholders (hero, leadership headshot, resource
