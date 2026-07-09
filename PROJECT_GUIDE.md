@@ -37,10 +37,11 @@ Pages: `index.html` + four service pages (`hoa-management.html`,
 - **Buildium portal links wired** (2026-06-30): added **Resident Login** and
   **Owner Login** links to the top **utility bar** (right side, after the "Serving
   Southern California" tagline) on all 5 pages. Open in a new tab. Buildium account
-  is fully provisioned; site subdomain is `larry3rqzj.managebuilding.com`. URLs:
-  Resident Center → `https://larry3rqzj.managebuilding.com/Resident/portal/login`;
-  Owner/vendor → `https://larry3rqzj.managebuilding.com/Manager`; manager admin (Larry)
-  → `https://larry3rqzj.managebuilding.com/manager/`. No public listings/online-
+  is fully provisioned; site subdomain is `welcomeproperties.managebuilding.com`
+  (updated 2026-07-09 from the old `larry3rqzj` subdomain). URLs:
+  Resident Center → `https://welcomeproperties.managebuilding.com/Resident/portal/login`;
+  Owner → `https://welcomeproperties.managebuilding.com/manager/public/authentication/login`;
+  manager admin (Larry) → `https://welcomeproperties.managebuilding.com/manager/`. No public listings/online-
   application page exists yet (`/listings` 404s) — needs listings posted in Buildium
   before an "Apply Now" link can point anywhere real. Placement is provisional —
   Justin may rework it (e.g. in Claude Design); the block is self-contained and easy
@@ -68,11 +69,50 @@ Pages: `index.html` + four service pages (`hoa-management.html`,
 (Claude can't open a local `file://` itself, but can screenshot your screen to review.)
 
 ## Deploy process
+
+### Preferred: git push from the Cowork cloud session (NO browser, NO local computer)
+Claude runs in a cloud container that reaches GitHub through an authenticating
+proxy. The proxy **auto-injects the GitHub credential** — so the deploy is just a
+normal clone/commit/push. Do NOT put a token in the URL and do NOT add a credential
+helper; both bypass the proxy and fail with "Invalid username or token".
+
+```
+git clone https://github.com/welcome-justin/welcome-pm.git
+cd welcome-pm
+# copy the changed files in from the working copy, then:
+git add -A
+git commit -m "…"            # under ~50 chars
+git push origin main
+```
+
+**PREREQUISITE — the repo must be enabled for the session.** If push (or any write)
+fails with `No anonymous write access` / `could not read Username`, and an API call
+to `https://api.github.com/repos/welcome-justin/welcome-pm` returns:
+`"GitHub access to this repository is not enabled for this session. Use add_repo to
+request access."` — then this session does NOT have GitHub write access yet.
+Fix: enable/add the `welcome-justin/welcome-pm` repo for this session's environment
+(Claude Code web: add the repository to the environment; that's the `add_repo` step).
+Repo-based sessions launched from welcome-pm have this by default; Cowork *folder*
+sessions (like the one connected to this Downloads folder) do NOT — that mismatch is
+why a deploy sometimes can't push and has to fall back below. Once the repo is
+enabled, the plain `git push` above just works, no local machine involved.
+
+Quick diagnostic (run in the cloud shell):
+`curl -s -o /dev/null -w "%{http_code}\n" https://api.github.com/repos/welcome-justin/welcome-pm`
+→ 200-ish means enabled; 403 with the "not enabled for this session" message means not.
+
+### Fallback: manual web upload (uses the browser, needs someone at github.com)
+Only if the repo can't be enabled for the session.
 1. Go to https://github.com/welcome-justin/welcome-pm/upload/main
 2. Drag the **changed** files onto the drop zone (re-uploading overwrites).
 3. Commit message under ~50 chars, commit directly to `main`.
-4. GitHub Pages rebuilds in ~1 min. Assets are CDN-cached ~10 min, so
-   **hard refresh (Cmd+Shift+R)** to see changes immediately.
+(Do NOT drive the user's Chrome/clipboard to do this without asking first — Justin
+objects to Claude taking over his computer for the deploy. Ask before any browser/
+computer-use path, or just hand him the file list to drag.)
+
+### After either path
+- GitHub Pages rebuilds in ~1 min. Assets are CDN-cached ~10 min, so
+  **hard refresh (Cmd+Shift+R)** to see changes immediately.
 - Keep the repo **public** (private breaks Pages on the free plan).
 
 ## Using Claude Design alongside this

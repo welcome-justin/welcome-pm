@@ -1,5 +1,8 @@
 # Welcome Property Management — Homepage
 
+**Live site:** https://welcomepropertymanagement.com
+(GitHub Pages origin: https://welcome-justin.github.io/welcome-pm/)
+
 A self-contained, **static** marketing homepage for Welcome Property Management
 (HOA, residential, commercial property management + brokerage, Southern California).
 
@@ -87,23 +90,22 @@ and the `<script src="app.js">` tag — the page keeps whatever defaults are on 
 
 ---
 
-## Deploy to GitHub Pages
+## Deploy (how this site actually ships)
 
-1. Create a repo and put these files at the **repo root** (or in a `/docs` folder).
-2. Commit & push:
-   ```bash
-   git init
-   git add .
-   git commit -m "Welcome Property Management homepage"
-   git branch -M main
-   git remote add origin https://github.com/<you>/<repo>.git
-   git push -u origin main
-   ```
-3. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**,
-   pick `main` and `/ (root)` (or `/docs`). Save.
-4. Your site goes live at `https://<you>.github.io/<repo>/` within a minute or two.
+This repo **is** the live site — GitHub Pages serves `main` at
+https://welcomepropertymanagement.com (custom domain via the `CNAME` file;
+Pages origin https://welcome-justin.github.io/welcome-pm/).
 
-(No Jekyll processing is needed; an empty `.nojekyll` file is included to skip it.)
+To deploy a change:
+1. Edit the files in the local **welcome-property-management-site** folder (source of truth).
+2. Go to https://github.com/welcome-justin/welcome-pm/upload/main and drag the
+   **changed** files onto the drop zone (re-uploading overwrites).
+3. Commit directly to `main`. Pages rebuilds in ~1 min; assets are CDN-cached ~10 min,
+   so hard refresh (Cmd+Shift+R) to see changes.
+
+Keep the repo **public** (private breaks Pages on the free plan). No Jekyll processing
+is needed; an empty `.nojekyll` file is included to skip it. See `PROJECT_GUIDE.md`
+for full conventions.
 
 ---
 
