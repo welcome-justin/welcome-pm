@@ -2,6 +2,9 @@
 
 Working context for this site. Read this first at the start of a session.
 This folder is the **single source of truth**. Make all changes here, then deploy.
+**Location (2026-07-13 onward):** the source of truth is now a real git clone at
+`~/Documents/GitHub/welcome-pm` (the old `~/Downloads/welcome-property-management-site`
+copy is retired). Deploy from VS Code — see Deploy process below.
 
 ## What this is
 A self-contained, static marketing site (no build step, no framework).
@@ -70,7 +73,20 @@ Pages: `index.html` + four service pages (`hoa-management.html`,
 
 ## Deploy process
 
-### Preferred: git push from the Cowork cloud session (NO browser, NO local computer)
+### Preferred (2026-07-13 onward): local commit + push from VS Code
+The repo is cloned to `~/Documents/GitHub/welcome-pm`, and VS Code is signed into
+GitHub as `welcome-justin` (the account that owns the repo). To deploy: Claude writes
+the changed files straight into this folder via the Cowork device bridge; then in
+VS Code open the **Source Control** panel, enter a message, **Commit**, and **Sync
+Changes** (push). GitHub Pages rebuilds in ~1 min. No web upload and no `file_upload`
+involved — this replaces both older methods below for day-to-day deploys.
+
+> Bridge quirk: git run *through the mounted folder* (Claude's `device_bash`) can leave a
+> stale `.git/index.lock` it cannot delete, which blocks VS Code. If Source Control errors
+> about a lock, delete `.git/index.lock` (Finder or `rm .git/index.lock`) and retry. Claude
+> should avoid running git commands in the mounted repo for this reason.
+
+### Alternative: git push from the Cowork cloud session (NO browser, NO local computer)
 Claude runs in a cloud container that reaches GitHub through an authenticating
 proxy. The proxy **auto-injects the GitHub credential** — so the deploy is just a
 normal clone/commit/push. Do NOT put a token in the URL and do NOT add a credential
