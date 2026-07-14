@@ -1,0 +1,12 @@
+# macOS junk
+.DS_Store
+
+# Internal project docs — kept local, NOT published to the public repo
+DESIGN_BRIEF.md
+PROJECT_GUIDE.md
+README.md
+
+# Convention for future internal notes (put private stuff here and it won't sync)
+_private/
+notes/
+*.private.md
