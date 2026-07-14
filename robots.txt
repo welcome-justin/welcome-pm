@@ -1,0 +1,5 @@
+# robots.txt for welcomepropertymanagement.com
+User-agent: *
+Allow: /
+
+Sitemap: https://welcomepropertymanagement.com/sitemap.xml
