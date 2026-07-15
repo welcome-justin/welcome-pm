@@ -49,9 +49,13 @@ Last updated: **2026-07-14**
 
 ## 🟡 Content (build topical authority)
 
-- [ ] **HOA management pricing / fees guide** — high informational demand; currently missing. (C draft → J review)
-- [ ] **"How to switch HOA management companies in California"** — high commercial intent. (C draft)
-- [ ] **"What does an HOA management company do" / "what to look for"** — top-of-funnel. (C draft)
+- [x] **HOA management pricing / fees guide** — `resource-hoa-management-cost.html` created
+      2026-07-14, linked from resources index + sitemap. **(J: review copy for accuracy.)**
+- [x] **"How to switch HOA management companies in California"** — `resource-switch-hoa-management.html`
+      created 2026-07-14, linked + in sitemap. **(J: review copy.)**
+- [ ] **"What does an HOA management company do"** — top-of-funnel. *Note: skipped a separate
+      "what to look for" piece for now to avoid cannibalizing the existing
+      `resource-management-company-expectations.html`; revisit if we want a distinct angle.* (C draft)
 - [ ] **City-specific service landing pages** (3–5 real service cities). *Blocked on city list below.* (C)
 - [ ] **FAQPage schema** on the service pages' existing FAQ accordions. (C)
 - [ ] **Testimonials / reviews / case studies** section (trust + fresh content). (J input → C)
