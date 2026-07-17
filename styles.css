@@ -10,11 +10,11 @@ body{font-family:var(--font-body);-webkit-font-smoothing:antialiased;text-render
 
 :root{ --surface:#ffffff; --font-body:'Public Sans',system-ui,sans-serif; --sec-pad:112px; }
 
-/* Fallback tokens (green + heritage + gold) so the page is styled even before any data-* applies */
+/* Fallback tokens (green + heritage + sage) so the page is styled even before any data-* applies */
 html{
   --bg:#f6f3ec; --ink:#1b2531; --ink-soft:#525c68; --line:#e7e1d4;
   --navy:#1e3d2f; --navy-deep:#13281f; --hero-bg:linear-gradient(150deg,#1e3d2f 0%,#13281f 100%);
-  --accent:#b0894f; --accent-ink:#84632e; --accent-12:rgba(176,137,79,.13); --accent-18:rgba(176,137,79,.2); --accent-40:rgba(176,137,79,.42);
+  --accent:#7f9460; --accent-ink:#566640; --accent-12:rgba(127,148,96,.14); --accent-18:rgba(127,148,96,.22); --accent-40:rgba(127,148,96,.44);
   --radius:4px; --font-display:'Source Serif 4',Georgia,serif;
 }
 

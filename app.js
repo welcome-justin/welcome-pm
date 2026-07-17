@@ -1,10 +1,10 @@
 /* Customize panel: sets data-* axes on <html>, persisted to localStorage.
    Pure progressive enhancement — if JS is blocked the page still renders the
-   default (green / heritage / gold) from the data-* attributes in index.html. */
+   default (green / heritage / sage) from the data-* attributes in index.html. */
 (function () {
   var root = document.documentElement;
   var KEY = 'wpm-tweaks';
-  var defaults = { color: 'green', style: 'heritage', accent: 'gold', compact: false, logo: 'square' };
+  var defaults = { color: 'green', style: 'heritage', accent: 'sage', compact: false, logo: 'square' };
   var state = Object.assign({}, defaults);
   try { state = Object.assign(state, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
 
